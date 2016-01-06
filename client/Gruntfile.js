@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
@@ -78,20 +79,27 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
+
+		 middleware: function (connect) {
+		   var middlewares = [];
+
+		   // Setup the proxy
+		   middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+		   // Serve static files
+		   middlewares.push(connect.static('.tmp'));
+		   middlewares.push(connect().use(
+			 '/bower_components',
+			 connect.static('./bower_components')
+		   ));
+		   middlewares.push(connect().use(
+			 '/app/styles',
+			 connect.static('./app/styles')
+		   ));
+		   middlewares.push(connect.static(appConfig.app));
+
+		   return middlewares;
+		 }
         }
       },
       test: {
@@ -115,7 +123,13 @@ module.exports = function (grunt) {
           open: true,
           base: '<%= yeoman.dist %>'
         }
-      }
+      },
+      proxies: [{
+      	context: "/app",
+      	host: "localhost",
+      	port: 9090,
+      	changeOrigin: true
+      }]
     },
 
     // Make sure there are no obvious mistakes
@@ -437,6 +451,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
