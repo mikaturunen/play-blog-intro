@@ -8,10 +8,10 @@
  * Controller of the blogappApp
  */
 angular.module('blogappApp')
-  .controller('SingupCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+	.controller('SingupCtrl', function () {
+		this.awesomeThings = [
+			'HTML5 Boilerplate',
+			'AngularJS',
+			'Karma'
+    	];
+  	});
