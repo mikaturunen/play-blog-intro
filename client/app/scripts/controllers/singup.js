@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @ngdoc function
@@ -7,11 +7,11 @@
  * # SingupCtrl
  * Controller of the blogappApp
  */
-angular.module('blogappApp')
-	.controller('SingupCtrl', function () {
+angular.module("blogappApp")
+	.controller("SingupCtrl", function () {
 		this.awesomeThings = [
-			'HTML5 Boilerplate',
-			'AngularJS',
-			'Karma'
+			"HTML5 Boilerplate",
+			"AngularJS",
+			"Karma"
     	];
   	});

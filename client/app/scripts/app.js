@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-	.module('blogappApp', [
+	.module("blogappApp", [
 		'ngAnimate',
 		'ngCookies',
 		'ngResource',
@@ -18,10 +18,11 @@ angular
 		'ngTouch'
 	])
 	.config(function ($routeProvider) {
-		$routeProvider.when('/', {
-			templateUrl: 'views/main.html',
-			controller: 'MainCtrl',
-			controllerAs: 'main'
-		})
-		.otherwise({ redirectTo: '/' });
+		$routeProvider
+			.when('/', {
+				templateUrl: 'views/main.html',
+				controller: 'MainCtrl',
+			})
+			.when(̨)
+			.otherwise({ redirectTo: '/' });
 	});
