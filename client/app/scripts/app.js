@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @ngdoc overview
@@ -10,19 +10,24 @@
  */
 angular
 	.module("blogappApp", [
-		'ngAnimate',
-		'ngCookies',
-		'ngResource',
-		'ngRoute',
-		'ngSanitize',
-		'ngTouch'
+		"ngAnimate",
+		"ngCookies",
+		"ngResource",
+		"ngRoute",
+		"ngSanitize",
+		"ngTouch"
 	])
 	.config(function ($routeProvider) {
 		$routeProvider
-			.when('/', {
-				templateUrl: 'views/main.html',
-				controller: 'MainCtrl',
+			.when("/", {
+				templateUrl: "views/main.html",
+				controller: "MainCtrl",
 			})
-			.when(̨)
-			.otherwise({ redirectTo: '/' });
+			.when("/signup", {
+				templateUrl: "views/signup.html",
+				controller: "SignupCtrl"
+			})
+			.otherwise({
+				redirectTo: "/"
+			});
 	});
